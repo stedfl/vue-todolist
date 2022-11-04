@@ -26,26 +26,18 @@
             <i class="fa-solid fa-plus"></i>
           </button>
         </div>
-        <h3 class="error text-center">errore</h3>
+        <h3 class="error text-center">{{errorMessage}}</h3>
         <div class="task-area mt-5">
           <ul class="px-0">
-            <li class="px-3 py-2 mb-2 d-flex justify-content-between">
-              <span>andare al mare</span>
-              <i class="fa-solid fa-trash-can trash-icon"></i>
-            </li>
-            <li class="px-3 py-2 mb-2 d-flex justify-content-between">
-              <span>andare al mare</span>
-              <i class="fa-solid fa-trash-can trash-icon"></i>
-            </li>
-            <li class="px-3 py-2 mb-2 d-flex justify-content-between">
-              <span>andare al mare</span>
+            <li v-for="(task, index) in tasks"  class="px-3 py-2 mb-2 d-flex justify-content-between">
+              <span :class="{'done' : task.done}">{{task.text}}</span>
               <i class="fa-solid fa-trash-can trash-icon"></i>
             </li>
             <h3>Non ci sono task!</h3>
           </ul>
         </div>
         <h4 class="counter-area text-center">
-          Hai <span class="counter-tasks">5</span> task da completare
+          Hai <span class="counter-tasks">{{counterDoneTask()}}</span> task da completare
         </h4>
 
       </div>
