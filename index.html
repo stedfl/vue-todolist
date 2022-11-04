@@ -31,25 +31,33 @@
 
         <div class="task-area mt-3">
           <div v-if="tasks.length" class="counter-area my-3">
-            <button @click="showDone()" type="button" class="btn btn-success position-relative me-3">
+            <button @click="showDone=true, showUndone=true" type="button" class="btn btn-primary position-relative me-3">
+              Tutti
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {{tasks.length}}
+                <span class="visually-hidden">unread messages</span>
+              </span>
+            </button>
+            <button @click="showUndone=false, showDone=true" type="button" class="btn btn-success position-relative me-3">
               Completati
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 {{counterDone}}
                 <span class="visually-hidden">unread messages</span>
               </span>
             </button>
-            <button type="button" class="btn btn-warning position-relative">
+            <button @click="showDone=false, showUndone=true" type="button" class="btn btn-warning position-relative">
               Da fare
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 {{counterUndone}}
                 <span class="visually-hidden">unread messages</span>
               </span>
             </button>
+        
           </div>
 
           <ul v-if="tasks.length" class="px-0">
-            <li @mouseenter="showTrash = index" @mouseleave="showTrash = null" @click="toggleTask(index), counterTask()" v-for="(task, index) in tasks" :class="{newClass : task.done}"  class="px-3 py-2 mb-2 d-flex justify-content-between">
-              <span :class="{'done' : task.done}">{{task.text}}</span>
+            <li v-for="(task, index) in tasks" @mouseenter="showTrash = index" @mouseleave="showTrash = null" @click="toggleTask(index), counterTask()" :class="[{'done' : task.done}, {'d-none' : (!showUndone && !task.done) || (!showDone && task.done)}]" class="px-3 py-2 mb-2 d-flex justify-content-between">
+              <span >{{task.text}}</span>
               <i v-show="showTrash === index" @click.stop="removeTask(index), counterTask() " class="fa-solid fa-trash-can trash-icon"></i>
             </li>
           </ul>
