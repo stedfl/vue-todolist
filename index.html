@@ -20,6 +20,7 @@
             Todo<span class="end-word">List</span> 
           </h1>
         </div>
+
         <div class="input-area w-100 mt-3 mb-1 d-flex justify-content-center">
           <input @keyup.enter="addTask()" v-model.trim=inputText type="text" class="form-control" id="exampleFormControlInput1" placeholder="new task">
           <button @click="addTask()" type="submit" class="btn-task ms-1">
@@ -27,6 +28,7 @@
           </button>
         </div>
         <h3 class="error text-center">{{errorMessage}}</h3>
+
         <div class="task-area mt-3">
           <div v-if="tasks.length" class="counter-area my-3">
             <button @click="" type="button" class="btn btn-success position-relative me-3">
@@ -44,19 +46,18 @@
               </span>
             </button>
           </div>
+
           <ul v-if="tasks.length" class="px-0">
             <li @click="toggleTask(index), counterTask()" v-for="(task, index) in tasks"  class="px-3 py-2 mb-2 d-flex justify-content-between">
               <span :class="{'done' : task.done}">{{task.text}}</span>
               <i @click.stop="removeTask(index), counterTask() " class="fa-solid fa-trash-can trash-icon"></i>
             </li>
           </ul>
+          
           <h3 v-else class="text-center">Non ci sono task!</h3>
         </div>
       </div>
-      
     </div>
-   
-
   </div>
   
 
