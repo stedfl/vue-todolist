@@ -1,0 +1,46 @@
+body {
+  background-color: #5ec5d4;
+}
+
+#app {
+  height: 100vh;
+}
+
+.main-wrapper {
+  background-color: antiquewhite;
+  width: 50%;
+}
+
+.logo img {
+  width: 300px;
+  
+}
+
+.logo h1 {
+  color: #001533;
+  font-size: 3rem;
+}
+
+.end-word {
+  color: #00e165;
+}
+
+.input-area button {
+  background-color: #00e165;
+  border: 1px solid #001533;
+  border-radius: 10%;
+  width: 35px;
+}
+
+.input-area button:hover {
+  background-color: #00e165;
+  border: 1px solid #001533;
+}
+
+.input-area button:active {
+  color: #00e165;
+  background-color:#001533;
+  border: 1px solid #00e165;
+}
+
+
