@@ -1,5 +1,6 @@
 body {
   background-color: #5ec5d4;
+  color: #001533;
 }
 
 #app {
@@ -13,7 +14,6 @@ body {
 
 .logo img {
   width: 300px;
-  
 }
 
 .logo h1 {
@@ -42,5 +42,36 @@ body {
   background-color:#001533;
   border: 1px solid #00e165;
 }
+
+.error {
+  height: 2rem;
+  color: coral;
+  font-size: 1.2rem;
+}
+
+.task-area li{
+  list-style: none;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.task-area .trash-icon {
+  cursor: pointer;
+}
+
+.task-area .trash-icon:hover {
+  color: coral;
+}
+
+.task-area .trash-icon:active {
+  font-size: 1.5rem;
+}
+
+.counter-tasks {
+  color: #00e165;
+}
+
+
+
 
 

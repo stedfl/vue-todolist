@@ -12,21 +12,46 @@
 </head>
 <body>
   <div id="app" class="w-100 d-flex justify-content-center align-items-center">
-    <div class="main-wrapper d-flex flex-column align-items-center py-4">
-      <div class="logo w-75 text-center d-flex align-items-center justify-content-between">
-        <img :src="logoImg.path" :alt="logoImg.name">
-        <h1 class="fw-bold">
-          Todo<span class="end-word">List</span> 
-        </h1>
-      </div>
-      <div class="input-area w-100 my-3 d-flex justify-content-center">
-        <input type="text" class="w-75 form-control" id="exampleFormControlInput1" placeholder="new task">
-        <button type="submit" class="btn-task ms-1">
-          <i class="fa-solid fa-plus"></i>
-        </button>
+    <div class="main-wrapper w-50 py-4">
+      <div class="container w-75">
+        <div class="logo text-center d-flex align-items-center justify-content-between">
+          <img :src="logoImg.path" :alt="logoImg.name">
+          <h1 class="fw-bold">
+            Todo<span class="end-word">List</span> 
+          </h1>
+        </div>
+        <div class="input-area w-100 mt-3 mb-1 d-flex justify-content-center">
+          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="new task">
+          <button type="submit" class="btn-task ms-1">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+        <h3 class="error text-center">errore</h3>
+        <div class="task-area mt-5">
+          <ul class="px-0">
+            <li class="px-3 py-2 mb-2 d-flex justify-content-between">
+              <span>andare al mare</span>
+              <i class="fa-solid fa-trash-can trash-icon"></i>
+            </li>
+            <li class="px-3 py-2 mb-2 d-flex justify-content-between">
+              <span>andare al mare</span>
+              <i class="fa-solid fa-trash-can trash-icon"></i>
+            </li>
+            <li class="px-3 py-2 mb-2 d-flex justify-content-between">
+              <span>andare al mare</span>
+              <i class="fa-solid fa-trash-can trash-icon"></i>
+            </li>
+            <h3>Non ci sono task!</h3>
+          </ul>
+        </div>
+        <h4 class="counter-area text-center">
+          Hai <span class="counter-tasks">5</span> task da completare
+        </h4>
+
       </div>
       
     </div>
+   
 
   </div>
   
