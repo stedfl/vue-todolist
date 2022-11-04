@@ -36,6 +36,15 @@ createApp({
     },
     toggleTask(index) {
       this.tasks[index].done = !this.tasks[index].done
+    },
+    removeTask(index) {
+      errorMessage = '';
+      if (this.tasks[index].done) {
+        this.tasks.splice(index, 1);
+      } else {
+        this.errorMessage = 'Devi completare il task prima di poterlo rimuovere'
+      }
+      
     }
 
   },
