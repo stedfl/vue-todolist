@@ -28,32 +28,30 @@
         </div>
         <h3 class="error text-center">{{errorMessage}}</h3>
         <div class="task-area mt-3">
-          <button @click="" type="button" class="btn btn-success position-relative my-3 me-3">
-            Completati
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              {{counterDone}}
-              <span class="visually-hidden">unread messages</span>
-            </span>
-          </button>
-          <button type="button" class="btn btn-warning position-relative my-3">
-            Da fare
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              {{counterUndone}}
-              <span class="visually-hidden">unread messages</span>
-            </span>
-          </button>
-          <ul class="px-0">
+          <div v-if="tasks.length" class="counter-area my-3">
+            <button @click="" type="button" class="btn btn-success position-relative me-3">
+              Completati
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {{counterDone}}
+                <span class="visually-hidden">unread messages</span>
+              </span>
+            </button>
+            <button type="button" class="btn btn-warning position-relative">
+              Da fare
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {{counterUndone}}
+                <span class="visually-hidden">unread messages</span>
+              </span>
+            </button>
+          </div>
+          <ul v-if="tasks.length" class="px-0">
             <li @click="toggleTask(index), counterTask()" v-for="(task, index) in tasks"  class="px-3 py-2 mb-2 d-flex justify-content-between">
               <span :class="{'done' : task.done}">{{task.text}}</span>
               <i @click.stop="removeTask(index), counterTask() " class="fa-solid fa-trash-can trash-icon"></i>
             </li>
-            <!-- <h3>Non ci sono task!</h3> -->
           </ul>
+          <h3 v-else class="text-center">Non ci sono task!</h3>
         </div>
-        <!-- <h4 class="counter-area text-center">
-          Hai <span class="counter-tasks"></span> task da completare
-        </h4> -->
-
       </div>
       
     </div>
