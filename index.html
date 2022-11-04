@@ -21,8 +21,8 @@
           </h1>
         </div>
         <div class="input-area w-100 mt-3 mb-1 d-flex justify-content-center">
-          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="new task">
-          <button type="submit" class="btn-task ms-1">
+          <input @keyup.enter="addTask()" v-model=inputText type="text" class="form-control" id="exampleFormControlInput1" placeholder="new task">
+          <button @click="addTask()" type="submit" class="btn-task ms-1">
             <i class="fa-solid fa-plus"></i>
           </button>
         </div>
