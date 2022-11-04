@@ -56,6 +56,15 @@ body {
   cursor: pointer;
 }
 
+.task-area li:hover {
+  background-color: rgb(233, 233, 233);
+}
+
+.task-area li:hover span {
+  transform: scale(1.2);
+  margin-left: 1.5rem;
+}
+
 .task-area .trash-icon {
   cursor: pointer;
 }

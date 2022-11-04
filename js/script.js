@@ -7,6 +7,8 @@ createApp({
       counterUndone: 0,
       logoImg: {path:'img/logo.png', name: 'logo Boolean' },
       inputText: '',
+      newClass: '',
+      showTrash: null,
       tasks: [
         {
           text: 'Andare a fare la spesa',
@@ -67,6 +69,10 @@ createApp({
         this.errorMessage = 'Inserire un task minimo di 5 caratteri'
       }
       this.inputText = ''
+    },
+    showDone() {
+      this.newClass = 'd-none'
+      console.log(this.newClass);
     }
 
   },
