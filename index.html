@@ -93,15 +93,22 @@
                 </span>
               </button>
             </div>
-
+            
+            <!-- 
+            Per filtrare la lista, ho usato v-show ma ho dovuto mettere la stessa
+            condizione per la classe Bootstrap d-flex.
+            Mettendo d-flex come classe di default per ogni li, v-show non funziona perchè vue non aggiunge display none come !important quindi il display none non si sovrascrive al display flex.
+            L'alternativa era di utilizzare al posto di v-show, direttamente una condizione alla classe d-none
+            -->
             <ul v-if="tasks.length" class="px-0">
               <li
                 v-for="(task, index) in tasks"
                 @mouseenter="showTrash = index"
                 @mouseleave="showTrash = null"
                 @click="toggleTask(index), counterTask()"
-                :class="{'d-none' : (!showUndone && !task.done) || (!showDone && task.done)}"
-                class="px-3 py-2 mb-2 d-flex justify-content-between"
+                v-show="shouldShowElement(index)"
+                :class="{'d-flex': shouldShowElement(index)}"
+                class="px-3 py-2 mb-2 justify-content-between"
               >
                 <span :class="{'done' : task.done}">{{task.text}}</span>
                 <i

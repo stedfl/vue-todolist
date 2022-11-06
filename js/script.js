@@ -74,6 +74,12 @@ createApp({
       this.showDone = true;
       this.showUnDone = true;
     },
+    shouldShowElement(index) {
+      return (
+        (this.showUndone && !this.tasks[index].done) ||
+        (this.showDone && this.tasks[index].done)
+      );
+    },
   },
   mounted() {
     this.counterTask();
