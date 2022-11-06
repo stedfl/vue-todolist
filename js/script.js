@@ -7,6 +7,7 @@ createApp({
       counterUndone: 0,
       logoImg: { path: "img/logo.png", name: "logo Boolean" },
       inputText: "",
+      isActive: false,
       showDone: true,
       showUndone: true,
       showTrash: null,

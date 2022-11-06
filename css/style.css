@@ -49,6 +49,10 @@ body {
   font-size: 1.2rem;
 }
 
+.counter-area button.active {
+ padding: 15px;
+}
+
 .task-area li {
   list-style: none;
   background-color: white;
