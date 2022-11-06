@@ -7,7 +7,7 @@ createApp({
       counterUndone: 0,
       logoImg: { path: "img/logo.png", name: "logo Boolean" },
       inputText: "",
-      isActive: false,
+      isActive: true,
       showDone: true,
       showUndone: true,
       showTrash: null,
@@ -72,8 +72,6 @@ createApp({
         this.errorMessage = "Inserire un task minimo di 5 caratteri";
       }
       this.inputText = "";
-      this.showDone = true;
-      this.showUnDone = true;
     },
     shouldShowElement(index) {
       return (
