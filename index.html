@@ -1,75 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <script src='https://unpkg.com/vue@3'></script>
-  <title>Todolist Vue</title>
-</head>
-<body>
-  <div id="app" class="w-100 d-flex justify-content-center align-items-center">
-    <div class="main-wrapper w-50 py-4">
-      <div class="container w-75">
-        <div class="logo text-center d-flex align-items-center justify-content-between">
-          <img :src="logoImg.path" :alt="logoImg.name">
-          <h1 class="fw-bold">
-            Todo<span class="end-word">List</span> 
-          </h1>
-        </div>
-
-        <div class="input-area w-100 mt-3 mb-1 d-flex justify-content-center">
-          <input @keyup.enter="addTask(), counterTask()" v-model.trim=inputText type="text" class="form-control" id="exampleFormControlInput1" placeholder="new task">
-          <button @click="addTask(), counterTask()" type="submit" class="btn-task ms-1">
-            <i class="fa-solid fa-plus"></i>
-          </button>
-        </div>
-        <h3 class="error text-center">{{errorMessage}}</h3>
-
-        <div class="task-area mt-3">
-          <div v-if="tasks.length" class="counter-area my-3">
-            <button @click="showDone=true, showUndone=true" type="button" class="btn btn-primary position-relative me-3">
-              Tutti
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                {{tasks.length}}
-                <span class="visually-hidden">unread messages</span>
-              </span>
-            </button>
-            <button @click="showUndone=false, showDone=true" type="button" class="btn btn-success position-relative me-3">
-              Completati
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                {{counterDone}}
-                <span class="visually-hidden">unread messages</span>
-              </span>
-            </button>
-            <button @click="showDone=false, showUndone=true" type="button" class="btn btn-warning position-relative">
-              Da fare
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                {{counterUndone}}
-                <span class="visually-hidden">unread messages</span>
-              </span>
-            </button>
-        
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://unpkg.com/vue@3"></script>
+    <title>Todolist Vue</title>
+  </head>
+  <body>
+    <div
+      id="app"
+      class="w-100 d-flex justify-content-center align-items-center"
+    >
+      <div class="main-wrapper w-50 py-4">
+        <div class="container w-75">
+          <div
+            class="logo text-center d-flex align-items-center justify-content-between"
+          >
+            <img :src="logoImg.path" :alt="logoImg.name" />
+            <h1 class="fw-bold">Todo<span class="end-word">List</span></h1>
           </div>
 
-          <ul v-if="tasks.length" class="px-0">
-            <li v-for="(task, index) in tasks" @mouseenter="showTrash = index" @mouseleave="showTrash = null" @click="toggleTask(index), counterTask()" :class="{'d-none' : (!showUndone && !task.done) || (!showDone && task.done)}" class="px-3 py-2 mb-2 d-flex justify-content-between">
-              <span :class="{'done' : task.done}">{{task.text}}</span>
-              <i v-show="showTrash === index" @click.stop="removeTask(index), counterTask() " class="fa-solid fa-trash-can trash-icon"></i>
-            </li>
-          </ul>
-          
-          <h3 v-else class="text-center">Non ci sono task!</h3>
+          <div class="input-area w-100 mt-3 mb-1 d-flex justify-content-center">
+            <input
+              @keyup.enter="addTask(), counterTask()"
+              v-model.trim="inputText"
+              type="text"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="new task"
+            />
+            <button
+              @click="addTask(), counterTask()"
+              type="submit"
+              class="btn-task ms-1"
+            >
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+          <h3 class="error text-center">{{errorMessage}}</h3>
+
+          <div class="task-area mt-3">
+            <div v-if="tasks.length" class="counter-area my-3">
+              <button
+                @click="showDone=true, showUndone=true"
+                type="button"
+                class="btn btn-primary position-relative me-3"
+              >
+                Tutti
+                <span
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                >
+                  {{tasks.length}}
+                  <span class="visually-hidden">unread messages</span>
+                </span>
+              </button>
+              <button
+                @click="showUndone=false, showDone=true"
+                type="button"
+                class="btn btn-success position-relative me-3"
+              >
+                Completati
+                <span
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                >
+                  {{counterDone}}
+                  <span class="visually-hidden">unread messages</span>
+                </span>
+              </button>
+              <button
+                @click="showDone=false, showUndone=true"
+                type="button"
+                class="btn btn-warning position-relative"
+              >
+                Da fare
+                <span
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                >
+                  {{counterUndone}}
+                  <span class="visually-hidden">unread messages</span>
+                </span>
+              </button>
+            </div>
+
+            <ul v-if="tasks.length" class="px-0">
+              <li
+                v-for="(task, index) in tasks"
+                @mouseenter="showTrash = index"
+                @mouseleave="showTrash = null"
+                @click="toggleTask(index), counterTask()"
+                :class="{'d-none' : (!showUndone && !task.done) || (!showDone && task.done)}"
+                class="px-3 py-2 mb-2 d-flex justify-content-between"
+              >
+                <span :class="{'done' : task.done}">{{task.text}}</span>
+                <i
+                  v-show="showTrash === index"
+                  @click.stop="removeTask(index), counterTask() "
+                  class="fa-solid fa-trash-can trash-icon"
+                ></i>
+              </li>
+            </ul>
+
+            <h3 v-else class="text-center">Non ci sono task!</h3>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  
 
-
-  <script src="js/script.js"></script>
-</body>
+    <script src="js/script.js"></script>
+  </body>
 </html>

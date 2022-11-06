@@ -39,7 +39,7 @@ body {
 
 .input-area button:active {
   color: #00e165;
-  background-color:#001533;
+  background-color: #001533;
   border: 1px solid #00e165;
 }
 
@@ -49,7 +49,7 @@ body {
   font-size: 1.2rem;
 }
 
-.task-area li{
+.task-area li {
   list-style: none;
   background-color: white;
   border-radius: 5px;

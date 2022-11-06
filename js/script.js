@@ -1,80 +1,81 @@
-const {createApp} = Vue;
+const { createApp } = Vue;
 createApp({
   data() {
     return {
-      errorMessage: '',
+      errorMessage: "",
       counterDone: 0,
       counterUndone: 0,
-      logoImg: {path:'img/logo.png', name: 'logo Boolean' },
-      inputText: '',
+      logoImg: { path: "img/logo.png", name: "logo Boolean" },
+      inputText: "",
       showDone: true,
       showUndone: true,
       showTrash: null,
       tasks: [
         {
-          text: 'Andare a fare la spesa',
-          done: true
+          text: "Andare a fare la spesa",
+          done: true,
         },
         {
-          text: 'pagare bolletta luce',
-          done: false
+          text: "pagare bolletta luce",
+          done: false,
         },
         {
-          text: 'comprare il regalo per Elisabetta',
-          done: true
-        }
-      ]
-    }
+          text: "comprare il regalo per Elisabetta",
+          done: true,
+        },
+      ],
+    };
   },
   methods: {
     counterTask() {
       this.counterDone = 0;
       this.counterUndone = 0;
       for (task of this.tasks) {
-        if(task.done) {
+        if (task.done) {
           this.counterDone++;
         } else {
-          this.counterUndone++
+          this.counterUndone++;
         }
       }
     },
     toggleTask(index) {
-      this.tasks[index].done = !this.tasks[index].done
+      this.tasks[index].done = !this.tasks[index].done;
     },
     removeTask(index) {
-      errorMessage = '';
+      errorMessage = "";
       if (this.tasks[index].done) {
         this.tasks.splice(index, 1);
       } else {
-        this.errorMessage = 'Devi completare il task prima di poterlo rimuovere'
+        this.errorMessage =
+          "Devi completare il task prima di poterlo rimuovere";
       }
     },
     addTask() {
       let isNew = true;
-      this.errorMessage = '';
+      this.errorMessage = "";
       if (this.inputText.length >= 5) {
         for (task of this.tasks) {
           if (this.inputText === task.text) {
-            this.errorMessage = 'Task già esistente';
+            this.errorMessage = "Task già esistente";
             isNew = false;
           }
         }
         if (isNew) {
           const newTask = {
             text: this.inputText,
-            done: false
-          }
+            done: false,
+          };
           this.tasks.unshift(newTask);
         }
       } else {
-        this.errorMessage = 'Inserire un task minimo di 5 caratteri'
+        this.errorMessage = "Inserire un task minimo di 5 caratteri";
       }
-      this.inputText = '';
+      this.inputText = "";
       this.showDone = true;
       this.showUnDone = true;
-    }
+    },
   },
   mounted() {
-    this.counterTask()
-  }
+    this.counterTask();
+  },
 }).mount("#app");
